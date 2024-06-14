@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import './widgets/new_transaction_form.dart';
 import './widgets/transaction_list.dart';
 import './widgets/chart.dart';
-import './models/transaction.dart';
-import './helpers/database_helper.dart';
+import 'transaction.dart';
+import 'database_helper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -126,17 +126,13 @@ class _MyHomePageState extends State<MyHomePage> {
         if (res != 0) {
           _updateUserTransactionsList();
         } else {
-          // Handle case where deletion was unsuccessful
           print("Failed to delete transaction with id: $id");
         }
       } catch (e) {
         print("Error deleting transaction: $e");
-        // Handle database error or other exceptions
       }
     } else {
-      // Handle case where id couldn't be parsed
       print("Invalid transaction ID: $id");
-      // Optionally, inform the user about invalid ID
     }
   }
 

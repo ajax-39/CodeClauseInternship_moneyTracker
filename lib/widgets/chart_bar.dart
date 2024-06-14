@@ -1,44 +1,37 @@
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
-  final String label;
-  final double spendingAmount;
-  final double spendingPctOfTotal;
-  final Color barColor;
+  final String _label;
+  final double _spendingAmount;
+  final double _spendingPctOfTotal;
 
-  const ChartBar({
-    super.key,
-    required this.label,
-    required this.spendingAmount,
-    required this.spendingPctOfTotal,
-    required this.barColor,
-  });
+  ChartBar(this._label, this._spendingAmount, this._spendingPctOfTotal);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints) {
       return Column(
         children: <Widget>[
-          SizedBox(
-            height: constraints.maxHeight * 0.15,
+          Container(
+            height: constraints.maxHeight * 0.16,
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-                '₹${spendingAmount.toStringAsFixed(0)}',
-                style: const TextStyle(
+                '₹${_spendingAmount.toStringAsFixed(0)}',
+                style: TextStyle(
                   fontFamily: "Quicksand",
-                  fontSize: 14.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w300,
                 ),
               ),
             ),
           ),
           SizedBox(
-            height: constraints.maxHeight * 0.05,
+            height: constraints.maxHeight * 0.04,
           ),
-          SizedBox(
+          Container(
             height: constraints.maxHeight * 0.6,
-            width: 20, // Width of the bar
+            width: 20, 
             child: Stack(
               children: <Widget>[
                 Container(
@@ -47,15 +40,15 @@ class ChartBar extends StatelessWidget {
                       color: Colors.grey,
                       width: 1.0,
                     ),
-                    color: const Color.fromRGBO(220, 220, 220, 1),
+                    color: Color.fromRGBO(220, 220, 220, 1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 FractionallySizedBox(
-                  heightFactor: spendingPctOfTotal,
+                  heightFactor: _spendingPctOfTotal,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: barColor,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -64,17 +57,17 @@ class ChartBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: constraints.maxHeight * 0.05,
+            height: constraints.maxHeight * 0.04,
           ),
-          SizedBox(
-            height: constraints.maxHeight * 0.15,
+          Container(
+            height: constraints.maxHeight * 0.16,
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-                label,
-                style: const TextStyle(
+                _label,
+                style: TextStyle(
                   fontFamily: "Quicksand",
-                  fontSize: 14.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w300,
                 ),
               ),

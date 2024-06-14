@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models/transaction.dart';
+import '../transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> _allTransactions;
@@ -35,14 +35,7 @@ class TransactionList extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                // SizedBox(
-                //   height: constraints.maxHeight * 0.8,
-                //   child: Image.asset(
-                //     "assets/waiting.png",
-                //     fit: BoxFit.contain,
-                //     color: Colors.grey[300],
-                //   ),
-                // ),
+       
               ],
             )
           // Transactions Present
@@ -53,54 +46,58 @@ class TransactionList extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 3.0, vertical: 3.0),
-                  child: Card(
-                    elevation: 5,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 1.0,
-                      horizontal: 15.0,
+                  child: Dismissible(
+                    key: ValueKey(txn.txnId),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      _deleteTransaction(txn.txnId);
+                    },
+                    background: Container(
+                      color: Theme.of(context).colorScheme.error,
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: const Icon(Icons.delete, color: Colors.white),
                     ),
-                    child: InkWell(
-                      onTap: () {},
-                      child: ListTile(
-                        leading: Container(
-                          width: 70.0,
-                          height: 50.0,
-                          padding: const EdgeInsets.all(3.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.0),
-                            color: Colors.green[700],
-                          ),
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Text(
-                              '₹${txn.txnAmount}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                                color: Colors.white,
+                    child: Card(
+                      elevation: 5,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 1.0, horizontal: 15.0),
+                      child: InkWell(
+                        onTap: () {},
+                        child: ListTile(
+                          leading: Container(
+                            width: 70.0,
+                            height: 50.0,
+                            padding: const EdgeInsets.all(3.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0),
+                              color: Colors.pink[700],
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text(
+                                '₹${txn.txnAmount}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        title: Text(
-                          txn.txnTitle,
-                          style: const TextStyle(
-                            fontFamily: "Quicksand",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                          title: Text(
+                            txn.txnTitle,
+                            style: const TextStyle(
+                              fontFamily: "Quicksand",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                        subtitle: Text(
-                          DateFormat('MMMM d, y -')
-                              .add_jm()
-                              .format(txn.txnDateTime),
-                          // DateFormat.yMMMMd().format(txn.txnDateTime),
-                        ),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete_outline),
-                          color: Theme.of(context).colorScheme.error,
-                          onPressed: () => _deleteTransaction(txn.txnId),
-                          tooltip: "Delete Transaction",
+                          subtitle: Text(
+                            DateFormat('MMMM d, y -')
+                                .add_jm()
+                                .format(txn.txnDateTime),
+                          ),
                         ),
                       ),
                     ),

@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import './chart_bar.dart';
-import '../models/transaction.dart';
+import '../transaction.dart';
 
 class Chart extends StatelessWidget {
-  final List<Transaction> recentTransactions;
-  double totalSpending = 0.0;
+  final List<Transaction> _recentTransactions;
+  double _totalSpending = 0.0;
 
-  Chart(this.recentTransactions, {super.key}) {
-    totalSpending =
-        recentTransactions.fold(0.0, (sum, txn) => sum + txn.txnAmount);
+  Chart(this._recentTransactions, {super.key}) {
+    _totalSpending =
+        _recentTransactions.fold(0.0, (sum, txn) => sum + txn.txnAmount);
   }
 
   List<Map<String, Object>> get groupedTransactionValues {
     final today = DateTime.now();
     List<double> weekSums = List<double>.filled(7, 0);
 
-    for (Transaction txn in recentTransactions) {
+    for (Transaction txn in _recentTransactions) {
       weekSums[txn.txnDateTime.weekday - 1] += txn.txnAmount;
     }
 
@@ -33,17 +33,6 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
-  Color _getColor(double amount) {
-    // Example of generating different colors based on spending amount
-    if (amount <= 100) {
-      return Colors.green;
-    } else if (amount <= 200) {
-      return Colors.orange;
-    } else {
-      return Colors.red;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -57,12 +46,11 @@ class Chart extends StatelessWidget {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                label: value['day'] as String,
-                spendingAmount: value['amount'] as double,
-                spendingPctOfTotal: totalSpending == 0.0
+                value['day'] as String,
+                value['amount'] as double,
+                _totalSpending == 0.0
                     ? 0.0
-                    : (value['amount'] as double) / totalSpending,
-                barColor: _getColor(value['amount'] as double),
+                    : (value['amount'] as double) / _totalSpending,
               ),
             );
           }).toList(),
