@@ -24,5 +24,8 @@ The Expense Manager app is designed to help users keep track of their expenses e
 - **Accessibility Anywhere**: Enjoy the convenience of accessing your expense tracking tool without needing an internet connection, making it perfect for on-the-go management.
 
 ## App Screenshot
-![WhatsApp Image 2024-06-14 at 21 02 59_fcd0e5f3](https://github.com/ajax-39/CodeClauseInternship_moneyTracker/assets/129135590/2fdf687a-cc44-4661-8a70-8dec48ea3925)
-![WhatsApp Image 2024-06-14 at 21 02 59_5badb4c9](https://github.com/ajax-39/CodeClauseInternship_moneyTracker/assets/129135590/7c21da7d-048a-4fbd-a54d-34b25f6eaacf)
+
+![WhatsApp Image 2024-06-14 at 21 02 59_5badb4c9](https://github.com/ajax-39/CodeClauseInternship_moneyTracker/assets/129135590/88df2a49-68de-4674-bcdd-0d4269024c7d)
+
+![WhatsApp Image 2024-06-14 at 21 48 22_f76239f0](https://github.com/ajax-39/CodeClauseInternship_moneyTracker/assets/129135590/ebfc6264-847e-4118-a9f8-4693a74a64c7)
+![WhatsApp Image 2024-06-14 at 21 48 22_948231b6](https://github.com/ajax-39/CodeClauseInternship_moneyTracker/assets/129135590/0ceabf3f-2549-4db0-a79d-fb03eb1dc5c8)
